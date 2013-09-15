@@ -10,4 +10,6 @@ attribute :gateway, :kind_of => String
 attribute :up, :kind_of => String
 attribute :down, :kind_of => String
 attribute :netmask, :kind_of => [String,Numeric]
+attribute :endpoint, :kind_of => [String]
+attribute :local, :kind_of => [String]
 attribute :ipv6, :kind_of => [TrueClass,FalseClass], :default => false
