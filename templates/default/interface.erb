@@ -11,12 +11,23 @@ auto <%= net_set[:device] %>
 <% if net_set[:dynamic] -%>
 iface <%= net_set[:device] %> inet<%= '6' if net_set[:ipv6] %> dhcp
 <% else -%>
+<% if net_set[:v4tunnel] -%>
+iface <%= net_set[:device] %> inet<%= '6' if net_set[:ipv6] %> v4tunnel
+  address <%= net_set[:address] %>
+<% else -%>
 iface <%= net_set[:device] %> inet<%= '6' if net_set[:ipv6] %> static
   address <%= net_set[:address] %>
+<% end -%>
 <% if net_set[:gateway] -%>
   gateway <%= net_set[:gateway] %>
 <% end -%>
+<% if net_set[:endpoint] -%>
+  endpoint <%= net_set[:endpoint] %>
+<% end -%>
   netmask <%= net_set[:netmask] %>
+<% if net_set[:local] -%>
+  local <%= net_set[:local] %>
+<% end -%>
 <% if net_set[:up] -%>
   up <%= net_set[:up] %>
 <% end -%>

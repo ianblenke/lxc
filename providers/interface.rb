@@ -18,7 +18,7 @@ end
 
 action :create do
   raise 'Device is required for creating an LXC interface!' unless new_resource.device
-  
+
   unless(@loaded[new_resource.container])
     @loaded[new_resource.container] = true
   end
@@ -34,6 +34,8 @@ action :create do
     net_set[:up] = new_resource.up if new_resource.up
     net_set[:down] = new_resource.down if new_resource.down
     net_set[:ipv6] = new_resource.ipv6
+    net_set[:local] = new_resource.local
+    net_set[:endpoint] = new_resource.endpoint
   end
 
   node.run_state[:lxc][:interfaces][new_resource.container] << net_set
